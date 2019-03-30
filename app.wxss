@@ -1,0 +1,23 @@
+/**app.wxss**/
+@import "dist/common/index.wxss";
+.container {
+  background: #F9F9F9;
+  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 0px 0;
+}
+
+
+.demo-margin-left {
+  margin-left: 10px;
+}
+
+.demo-margin-right {
+  margin-right: 10px;
+}
+
+.demo-margin-bottom {
+  display: block;
+  margin-bottom: 15px;
+}

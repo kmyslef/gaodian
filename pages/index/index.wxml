@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<view class="container">
+  <view style="display:flex;flex-direction: row;">
+    <view>
+      <van-badge-group bind:change="onBadgeChange" custom-class="group">
+        <van-badge title="标签名称" />
+        <van-badge title="标签名称" />
+        <van-badge title="标签名称" />
+
+        <van-badge title="标签名称" />
+      </van-badge-group>
+    </view>
+    <view style="flex:1;">
+      <scroll-view scroll-y style="height:{{scroll_height}}rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新" thumb="{{ imageURL }}" bindtap="cellChoose"/>
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+      </scroll-view>
+
+    </view>
+
+  </view>
+
+
+  <van-tabbar active="{{ active2 }}" custom-class="tabbar" safe-area-inset-bottom="{{ false }}" bind:change="onTabChange">
+    <van-tabbar-item info="3">
+      <image slot="icon" src="{{ icon.normal }}" mode="aspectFit" />
+      <image slot="icon-active" src="{{ icon.active }}" mode="aspectFit" /> 自定义
+    </van-tabbar-item>
+    <van-tabbar-item icon="search">标签</van-tabbar-item>
+    <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+  </van-tabbar>
+
+
+</view>
