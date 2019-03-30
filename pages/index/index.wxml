@@ -3,7 +3,7 @@
   <view style="display:flex;flex-direction: row;">
     <view>
       <van-badge-group bind:change="onBadgeChange" custom-class="group">
-        <van-badge title="标签名称" />
+        <van-badge title="产品1" />
         <van-badge title="标签名称" />
         <van-badge title="标签名称" />
 
