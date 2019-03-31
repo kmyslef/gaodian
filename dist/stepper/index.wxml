@@ -5,7 +5,7 @@
     class="minus-class {{ utils.bem('stepper__minus', { disabled: minusDisabled }) }}"
     hover-class="van-stepper__minus--hover"
     hover-stay-time="70"
-    bind:tap="onMinus"
+    catch:tap="onMinus"
   />
   <input
     type="{{ integer ? 'number' : 'digit' }}"
@@ -13,14 +13,14 @@
     value="{{ value }}"
     focus="{{ focus }}"
     disabled="{{ disabled || disableInput }}"
-    bindinput="onInput"
-    bind:focus="onFocus"
-    bind:blur="onBlur"
+    catchinput="onInput"
+    catch:focus="onFocus"
+    catch:blur="onBlur"
   />
   <view
     class="plus-class {{ utils.bem('stepper__plus', { disabled: plusDisabled }) }}"
     hover-class="van-stepper__plus--hover"
     hover-stay-time="70"
-    bind:tap="onPlus"
+    catch:tap="onPlus"
   />
 </view>

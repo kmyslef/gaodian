@@ -3,25 +3,26 @@
   <view style="display:flex;flex-direction: row;">
     <view>
       <van-badge-group bind:change="onBadgeChange" custom-class="group">
-        <van-badge title="产品1" />
-        <van-badge title="标签名称" />
-        <van-badge title="标签名称" />
+        <block wx:for="{{classifyList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.classifyID}}">
+          <van-badge title="{{item.classifyName}}" />
+        </block>
 
-        <van-badge title="标签名称" />
       </van-badge-group>
     </view>
     <view style="flex:1;">
       <scroll-view scroll-y style="height:{{scroll_height}}rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新" thumb="{{ imageURL }}" bindtap="cellChoose"/>
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
-        <van-card num="2" price="2.00" desc="描述信息" title="2018秋冬新款男士休闲时尚军绿飞行夹克秋冬新款男" thumb="{{ imageURL }}" />
+        <block wx:for="{{objs}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.objID}}">
+          <van-card id="{{item.objID}}" price="{{item.price}}" desc="{{item.desc}}" title="{{item.title}}" thumb="{{item.thumbUrl}}" catchtap="cellChoose">
+            <view slot="tags">
+              <block wx:for="{{item.tags}}" data-index="{{tindex}}" wx:key="{{this}}">
+                <van-tag plain type="danger" custom-class="tag">{{item.name}}</van-tag>
+              </block>
+            </view>
+            <view slot="footer" class="van-card__footer">
+              <van-stepper value="{{ objNum[currentClass][tindex] }}" data-index="{{tindex}}" disableInput  bind:change="onStepperChange"/>
+            </view>
+          </van-card>
+        </block>
       </scroll-view>
 
     </view>
@@ -29,14 +30,13 @@
   </view>
 
 
-  <van-tabbar active="{{ active2 }}" custom-class="tabbar" safe-area-inset-bottom="{{ false }}" bind:change="onTabChange">
-    <van-tabbar-item info="3">
-      <image slot="icon" src="{{ icon.normal }}" mode="aspectFit" />
-      <image slot="icon-active" src="{{ icon.active }}" mode="aspectFit" /> 自定义
-    </van-tabbar-item>
-    <van-tabbar-item icon="search">标签</van-tabbar-item>
-    <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-  </van-tabbar>
+  <van-submit-bar
+    price="{{ totlePrice }}"
+    button-text="确定"
+    bind:submit="onCommitBtn"
+    custom-class="van-submit-bar"
+    safe-area-inset-bottom="{{ false }}"
+  />
 
 
 </view>
