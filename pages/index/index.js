@@ -19,169 +19,26 @@ Page({
       scroll_height: windowHeight * 750 / windowWidth - 110
     });
 
-    let allData = [{
-        "classifyID": "0",
-        "classifyName": "产品1",
-        "objs": [{
-          "objID": "0",
-          "title": "2018秋季",
-          "desc": "描述信息",
-          "price": "3.00",
-          "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-          "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-          ]
-        }, {
-            "objID": "5",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }, {
-            "objID": "5",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }, {
-            "objID": "5",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }, {
-            "objID": "5",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }, {
-            "objID": "5",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }, {
-            "objID": "5",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }, {
-            "objID": "5",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }, {
-            "objID": "6",
-            "title": "2018秋季",
-            "desc": "描述信息",
-            "price": "3.00",
-            "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-            "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-            ]
-          }]
+    let that = this;
+
+    wx.request({
+      url: 'https://www.easy-mock.com/mock/5ca0798a3cd80d358df42f48/api/homechanpin',
+      method: 'GET',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
       },
-      {
-        "classifyID": "1",
-        "classifyName": "产品2",
-        "objs": [{
-          "objID": "1",
-          "title": "2018秋季",
-          "desc": "描述信息",
-          "price": "3.00",
-          "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-          "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-          ]
-        }]
-      },
-      {
-        "classifyID": "2",
-        "classifyName": "产品1",
-        "objs": [{
-          "objID": "2",
-          "title": "2018秋季",
-          "desc": "描述信息",
-          "price": "3.00",
-          "thumbUrl": "//img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg",
-          "tags": [{
-              "name": "标签"
-            },
-            {
-              "name": "标签2"
-            }
-          ]
-        }]
+      success(res) {
+        
+        let allData = res.data.data;
+
+        console.log(allData);
+        that.setData({
+          classifyList: allData,
+          objs: allData[0].objs
+        });
       }
-    ];
-    this.setData({
-      classifyList: allData,
-      objs: allData[0].objs
     });
+    
   },
   onTabChange(event) {
     console.log(event.detail);
@@ -214,19 +71,30 @@ Page({
   },
   onStepperChange(event){
     let objsN = this.data.objNum;
-    let tNum= objsN[""+this.data.currentClass];
+    let tNum = objsN[""+this.data.currentClass];
     if (!tNum)
     {
       tNum = {};
     }
+
+    //对比两次的值，来计算总价格的差值
+    let lastNum = tNum["" + event.currentTarget.dataset.index];
+    if (!lastNum)
+    {
+      lastNum = 0;
+    }
+    let dvalue = event.detail - lastNum;
+
+    let temObj = this.data.objs[event.currentTarget.dataset.index];
+    let temPrice = this.data.totlePrice + (dvalue * parseFloat(temObj.price) *100);
+
     tNum[""+event.currentTarget.dataset.index] = event.detail;
 
     objsN["" + this.data.currentClass] = tNum;
 
-    
-
     this.setData({
-      objNum: objsN
+      objNum: objsN,
+      totlePrice: temPrice
     });
   },
   onCommitBtn(event){
