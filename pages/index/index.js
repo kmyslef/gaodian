@@ -9,7 +9,8 @@ Page({
     objs: [],
     currentClass:0,
     objNum:{},
-    totlePrice:0
+    totlePrice:0,
+    badgeList:[]
   },
   onLoad: function() {
 
@@ -30,11 +31,16 @@ Page({
       success(res) {
         
         let allData = res.data.data;
-
+        let temList = [];
+        for (let i = 0; i < allData.length; i++)
+        {
+          temList.push(null);
+        }
         console.log(allData);
         that.setData({
           classifyList: allData,
-          objs: allData[0].objs
+          objs: allData[0].objs,
+          badgeList: temList
         });
       }
     });
@@ -92,15 +98,54 @@ Page({
 
     objsN["" + this.data.currentClass] = tNum;
 
+    let temBadgeList = this.data.badgeList;
+    let temBadge = temBadgeList[this.data.currentClass];
+    temBadge += dvalue;
+    if (temBadge == 0)
+    {
+      temBadge = null;
+    }
+    temBadgeList[this.data.currentClass] = temBadge;
+
     this.setData({
       objNum: objsN,
-      totlePrice: temPrice
+      totlePrice: temPrice,
+      badgeList: temBadgeList
     });
   },
   onCommitBtn(event){
     console.log(event);
-    wx.navigateTo({
-      url: '../commit/commit'
-    })
+    if (this.data.totlePrice > 0)
+    {
+      const that = this;
+      let rltList = [];
+      let objsN = this.data.objNum;
+      Object.keys(objsN).forEach(function (key) {
+
+        Object.keys(objsN[key]).forEach(function (key1) {
+
+          let temobj = { "objID": that.data.classifyList[key].objs[key1].objID, "num": objsN[key][key1], "price": that.data.classifyList[key].objs[key1].price};
+          rltList.push(temobj);
+        });
+
+      });
+
+      let rltObj = { "list": rltList, "totlePrice": this.data.totlePrice};
+      wx.setStorage({
+        key: 'rltObj',
+        data: JSON.stringify(rltObj)
+      })
+
+
+      wx.navigateTo({
+        url: '../commit/commit'
+      })
+    }
+    else{
+      wx.showToast({
+        title: '请选择商品',
+        'icon':'none'
+      })
+    }
   }
 })

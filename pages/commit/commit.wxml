@@ -1,2 +1,19 @@
-<!--pages/commit/commit.wxml-->
-<text>pages/commit/commit.wxml</text>
+<view class="container">
+<demo-block title="展示箭头">
+ <van-cell
+    title="单元格"
+    value="内容"
+    is-link
+  />
+   <van-cell
+    title="单元格"
+    value="内容"
+    is-link
+  />
+</demo-block>
+
+
+</view>
+
+
+

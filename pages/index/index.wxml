@@ -4,7 +4,9 @@
     <view>
       <van-badge-group bind:change="onBadgeChange" custom-class="group">
         <block wx:for="{{classifyList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.classifyID}}">
-          <van-badge title="{{item.classifyName}}" />
+          <!-- <van-badge title="{{item.classifyName}}" wx:if="{{badgeList[tindex] > 0}}" info="{{badgeList[tindex]}}"/>
+          <van-badge title="{{item.classifyName}}" wx:else/> -->
+          <van-badge title="{{item.classifyName}}" info="{{badgeList[tindex]}}"/>
         </block>
 
       </van-badge-group>
