@@ -99,5 +99,8 @@ Page({
   },
   onCommitBtn(event){
     console.log(event);
+    wx.navigateTo({
+      url: '../commit/commit'
+    })
   }
 })
