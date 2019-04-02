@@ -1,19 +1,69 @@
 <view class="container">
-<demo-block title="展示箭头">
- <van-cell
-    title="单元格"
-    value="内容"
-    is-link
-  />
-   <van-cell
-    title="单元格"
-    value="内容"
-    is-link
-  />
-</demo-block>
+  <scroll-view scroll-y style="height:{{scroll_height}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+    <van-cell title="收货地址：" value="东软A园 A2" is-link />
+    <van-cell title="收货时间：" value="2019-10-10 上午" is-link />
+    <demo-block title=" ">
+      <van-panel title="订单信息" desc="以下为您订购的商品，请仔细核对" use-footer-slot>
+        <view class="content">
+          <view>
+            <view>
+              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
+            </view>
+            <view style="display:flex;margin-bottom:15px;">
+              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
+              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
+            </view>
+          </view>
 
+          <view>
+            <view>
+              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
+            </view>
+            <view style="display:flex;margin-bottom:15px;">
+              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
+              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
+            </view>
+          </view>
+
+          <view>
+            <view>
+              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
+            </view>
+            <view style="display:flex;margin-bottom:15px;">
+              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
+              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
+            </view>
+          </view>
+
+          <view>
+            <view>
+              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
+            </view>
+            <view style="display:flex;margin-bottom:15px;">
+              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
+              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
+            </view>
+          </view>
+        </view>
+
+        <view slot="footer" class="footer">
+          <view style="display:flex;margin-top:10px;margin-bottom:15px;">
+            <text style='flex:1;font-size: 15px;'>配送费：</text>
+            <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>¥0.00</text>
+          </view>
+          <view style="display:flex;margin-top:10px;margin-bottom:15px;">
+            <text style='flex:1;font-size: 15px;'>包装费：</text>
+            <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>¥0.00</text>
+          </view>
+          <view style="display:flex;margin-top:10px;margin-bottom:15px;">
+            <text style='flex:1;font-size: 15px;'>积分抵扣：(100积分)</text>
+            <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>-¥10.00</text>
+          </view>
+        </view>
+
+      </van-panel>
+    </demo-block>
+  </scroll-view>
+  <van-submit-bar price="{{ 0 }}" button-text="提交订单" bind:submit="onCommitBtn" custom-class="van-submit-bar" safe-area-inset-bottom="{{ false }}" />
 
 </view>
-
-
-

@@ -1,8 +1,10 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/commit/commit"
+    "pages/commit/commit",
+    
+    "pages/logs/logs"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -11,6 +13,7 @@
     "navigationBarTextStyle":"black"
   },
   "usingComponents": {
+    "demo-block": "../../dist/demo-block/index",
     "van-action-sheet": "../../dist/action-sheet/index",
     "van-area": "../../dist/area/index",
     "van-badge": "../../dist/badge/index",

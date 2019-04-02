@@ -12,7 +12,7 @@
       </van-badge-group>
     </view>
     <view style="flex:1;">
-      <scroll-view scroll-y style="height:{{scroll_height}}rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+      <scroll-view scroll-y style="height:{{scroll_height}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
         <block wx:for="{{objs}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.objID}}">
           <van-card id="{{item.objID}}" price="{{item.price}}" desc="{{item.desc}}" title="{{item.title}}" thumb="{{item.thumbUrl}}" catchtap="cellChoose">
             <view slot="tags">

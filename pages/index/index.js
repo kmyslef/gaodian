@@ -17,7 +17,7 @@ Page({
     let windowHeight = wx.getSystemInfoSync().windowHeight;
     let windowWidth = wx.getSystemInfoSync().windowWidth;
     this.setData({
-      scroll_height: windowHeight * 750 / windowWidth - 110
+      scroll_height: windowHeight - 50
     });
 
     let that = this;
@@ -45,9 +45,6 @@ Page({
       }
     });
     
-  },
-  onTabChange(event) {
-    console.log(event.detail);
   },
   onBadgeChange(event) {
     console.log(event.detail);

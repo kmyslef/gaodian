@@ -1,1 +1,8 @@
 /* pages/commit/commit.wxss */
+
+.content {
+  padding: 20px;
+  font-size: 15px;
+}
+
+
