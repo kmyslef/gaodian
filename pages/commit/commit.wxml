@@ -5,45 +5,17 @@
     <demo-block title=" ">
       <van-panel title="订单信息" desc="以下为您订购的商品，请仔细核对" use-footer-slot>
         <view class="content">
-          <view>
+          <block wx:for="{{objList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.objID}}">
             <view>
-              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
+              <view>
+                <text>{{item.title}}</text>
+              </view>
+              <view style="display:flex;margin-bottom:15px;">
+                <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X{{item.num}}</text>
+                <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥{{item.price}}</text>
+              </view>
             </view>
-            <view style="display:flex;margin-bottom:15px;">
-              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
-              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
-            </view>
-          </view>
-
-          <view>
-            <view>
-              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
-            </view>
-            <view style="display:flex;margin-bottom:15px;">
-              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
-              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
-            </view>
-          </view>
-
-          <view>
-            <view>
-              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
-            </view>
-            <view style="display:flex;margin-bottom:15px;">
-              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
-              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
-            </view>
-          </view>
-
-          <view>
-            <view>
-              <text>泡芙泡芙泡芙泡芙泡芙泡芙泡芙泡芙</text>
-            </view>
-            <view style="display:flex;margin-bottom:15px;">
-              <text style='flex:1;color:#CCCCCC;font-size: 12px;'>X1</text>
-              <text style='flex:1;text-align: right;color:#F03131;font-size: 12px;'>¥15.00</text>
-            </view>
-          </view>
+          </block>
         </view>
 
         <view slot="footer" class="footer">

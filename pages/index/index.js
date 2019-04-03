@@ -121,7 +121,7 @@ Page({
 
         Object.keys(objsN[key]).forEach(function (key1) {
 
-          let temobj = { "objID": that.data.classifyList[key].objs[key1].objID, "num": objsN[key][key1], "price": that.data.classifyList[key].objs[key1].price};
+          let temobj = { "objID": that.data.classifyList[key].objs[key1].objID, "num": objsN[key][key1], "price": that.data.classifyList[key].objs[key1].price, "title": that.data.classifyList[key].objs[key1].title};
           rltList.push(temobj);
         });
 

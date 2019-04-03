@@ -1,6 +1,8 @@
 Page({
   data: {
-    scroll_height: 0
+    scroll_height: 0,
+    totlePrice:0,
+    objList:[]
   },
   onLoad: function() {
 
@@ -10,6 +12,21 @@ Page({
       scroll_height: windowHeight - 60
     });
 
+    const that = this;
+
+    wx.getStorage({
+      key: 'rltObj',
+      success: function(res) {
+        console.log(JSON.stringify(res));
+        const tem = res.data;
+        const temobj = JSON.parse(tem);
+        that.setData({
+          totlePrice: temobj.totlePrice,
+          objList: temobj.list
+        });
+
+      },
+    })
     
     
   },
