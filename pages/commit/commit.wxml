@@ -1,7 +1,13 @@
 <view class="container">
   <scroll-view scroll-y style="height:{{scroll_height}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
-    <van-cell title="收货地址：" value="东软A园 A2" is-link />
-    <van-cell title="收货时间：" value="2019-10-10 上午" is-link />
+    <demo-block title=" ">
+     <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+      <van-cell title="收货地址：" value="{{selectVal}}" is-link />
+      </picker>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange1" bindcolumnchange="bindMultiPickerColumnChange1" value="{{multiIndex1}}" range="{{multiArray1}}">
+      <van-cell title="收货时间：" value="{{selectVal1}}" is-link />
+      </picker>
+    </demo-block>
     <demo-block title=" ">
       <van-panel title="订单信息" desc="以下为您订购的商品，请仔细核对" use-footer-slot>
         <view class="content">
@@ -21,10 +27,6 @@
         <view slot="footer" class="footer">
           <view style="display:flex;margin-top:10px;margin-bottom:15px;">
             <text style='flex:1;font-size: 15px;'>配送费：</text>
-            <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>¥0.00</text>
-          </view>
-          <view style="display:flex;margin-top:10px;margin-bottom:15px;">
-            <text style='flex:1;font-size: 15px;'>包装费：</text>
             <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>¥0.00</text>
           </view>
           <view style="display:flex;margin-top:10px;margin-bottom:15px;">
