@@ -62,7 +62,6 @@ Page({
     });
 
     const that = this;
-
     wx.getStorage({
       key: 'rltObj',
       success: function(res) {

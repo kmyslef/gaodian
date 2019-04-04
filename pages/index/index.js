@@ -10,15 +10,18 @@ Page({
     currentClass:0,
     objNum:{},
     totlePrice:0,
-    badgeList:[]
+    badgeList:[],
+    notiy:"欢迎：当前积分为0"
   },
   onLoad: function() {
 
     let windowHeight = wx.getSystemInfoSync().windowHeight;
     let windowWidth = wx.getSystemInfoSync().windowWidth;
     this.setData({
-      scroll_height: windowHeight - 50
+      scroll_height: windowHeight - 90
     });
+
+    console.log(JSON.stringify(app.globalData.userInfo));
 
     let that = this;
 

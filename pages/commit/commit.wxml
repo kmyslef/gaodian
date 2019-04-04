@@ -26,10 +26,6 @@
 
         <view slot="footer" class="footer">
           <view style="display:flex;margin-top:10px;margin-bottom:15px;">
-            <text style='flex:1;font-size: 15px;'>配送费：</text>
-            <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>¥0.00</text>
-          </view>
-          <view style="display:flex;margin-top:10px;margin-bottom:15px;">
             <text style='flex:1;font-size: 15px;'>积分抵扣：(100积分)</text>
             <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>-¥10.00</text>
           </view>

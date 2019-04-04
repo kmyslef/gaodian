@@ -1,12 +1,14 @@
 <!--index.wxml-->
 <view class="container">
+  <!-- <van-notice-bar mode="link" text="欢迎笨笨：当前积分为56 " left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png" /> -->
+  <van-notice-bar text="{{notiy}}" left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png" />
   <view style="display:flex;flex-direction: row;">
     <view>
       <van-badge-group bind:change="onBadgeChange" custom-class="group">
         <block wx:for="{{classifyList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.classifyID}}">
           <!-- <van-badge title="{{item.classifyName}}" wx:if="{{badgeList[tindex] > 0}}" info="{{badgeList[tindex]}}"/>
           <van-badge title="{{item.classifyName}}" wx:else/> -->
-          <van-badge title="{{item.classifyName}}" info="{{badgeList[tindex]}}"/>
+          <van-badge title="{{item.classifyName}}" info="{{badgeList[tindex]}}" />
         </block>
 
       </van-badge-group>
@@ -21,7 +23,7 @@
               </block>
             </view>
             <view slot="footer" class="van-card__footer">
-              <van-stepper value="{{ objNum[currentClass][tindex] }}" data-index="{{tindex}}" disableInput  bind:change="onStepperChange"/>
+              <van-stepper value="{{ objNum[currentClass][tindex] }}" data-index="{{tindex}}" disableInput bind:change="onStepperChange" />
             </view>
           </van-card>
         </block>
@@ -32,13 +34,7 @@
   </view>
 
 
-  <van-submit-bar
-    price="{{ totlePrice }}"
-    button-text="确定"
-    bind:submit="onCommitBtn"
-    custom-class="van-submit-bar"
-    safe-area-inset-bottom="{{ false }}"
-  />
+  <van-submit-bar price="{{ totlePrice }}" button-text="确定" bind:submit="onCommitBtn" custom-class="van-submit-bar" safe-area-inset-bottom="{{ false }}" />
 
 
 </view>
