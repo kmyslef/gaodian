@@ -1,9 +1,7 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/commit/commit",
-    
-    "pages/logs/logs"
+    "pages/commit/commit"
     
   ],
   "window":{

@@ -38,3 +38,13 @@
 
 
 </view>
+
+<van-popup show="{{ isAuthShow }}" bind:close="onClose">
+  <view style="height:250rpx;width:500rpx;  display: flex;flex-direction: column;justify-content: center;align-items: center;">
+    <text style="padding-left:10px;padding-right:10px;color:#817d7d;font-weight:300;">由于程序需要您的用户名等信息，所以希望您将此权限开放</text>
+  </view>
+  <van-button size="large" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" style="color:#817d7d;font-weight:300;">授权</van-button>
+  <view wx:else>请升级微信版本</view>
+</van-popup>
+
+<van-dialog id="van-dialog" />
