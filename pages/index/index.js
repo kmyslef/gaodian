@@ -192,20 +192,44 @@ Page({
     });
 
     const that = this;
+
     wx.login({
       success: function(res) {
-
+        console.log(JSON.stringify(userInfo));
         if (res.code) {
-          const url = `${app.globalData.urlPath}/api/client/login?code=${res.code}`;
+          const url = `${app.globalData.urlPath}/api/client/login`;
           wx.request({
             url: url,
-            method: 'GET',
+            method: 'POST',
             header: {
-              'content-type': 'application/x-www-form-urlencoded'
+              'content-type': 'application/json'
+            },
+            data:{
+              "code": res.code,
+              "gender": userInfo.gender,
+              "nick": userInfo.nickName,
+              "avatarUrl": userInfo.avatarUrl
             },
             success(res) {
-
-              console.log(JSON.stringify(res));
+              
+              if (res.statusCode == 200){
+                console.log("正确" + JSON.stringify(res));
+                app.globalData.token = res.data.data.token;
+                app.globalData.integral = res.data.data.integral;
+                const notiystr1 = `欢迎${userInfo.nickName}，当前您拥${app.globalData.integral}有积分`;
+                that.setData({
+                  notiy: notiystr1
+                });
+              }
+              else{
+                Dialog.alert({
+                  title: '获取用户信息失败',
+                  message: '获取用户信息失败，请点击确定重新请求'
+                }).then(() => {
+                  // on close
+                  that.afterUserInfo(userInfo);
+                });
+              }
 
             },
             fail(e) {
