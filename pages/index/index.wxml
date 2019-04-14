@@ -5,10 +5,10 @@
   <view style="display:flex;flex-direction: row;">
     <view>
       <van-badge-group bind:change="onBadgeChange" custom-class="group">
-        <block wx:for="{{classifyList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.classifyID}}">
+        <block wx:for="{{classifyList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.classifyid}}">
           <!-- <van-badge title="{{item.classifyName}}" wx:if="{{badgeList[tindex] > 0}}" info="{{badgeList[tindex]}}"/>
           <van-badge title="{{item.classifyName}}" wx:else/> -->
-          <van-badge title="{{item.classifyName}}" info="{{badgeList[tindex]}}" />
+          <van-badge title="{{item.classifyname}}" info="{{badgeList[tindex]}}" />
         </block>
 
       </van-badge-group>
@@ -16,10 +16,10 @@
     <view style="flex:1;">
       <scroll-view scroll-y style="height:{{scroll_height}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
         <block wx:for="{{objs}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.objID}}">
-          <van-card id="{{item.objID}}" price="{{item.price}}" desc="{{item.desc}}" title="{{item.title}}" thumb="{{item.thumbUrl}}" catchtap="cellChoose">
+          <van-card id="{{item.objid}}" price="{{item.price}}" desc="{{item.des}}" title="{{item.title}}" thumb="{{globurl}}/{{item.url}}" catchtap="cellChoose">
             <view slot="tags">
               <block wx:for="{{item.tags}}" data-index="{{tindex}}" wx:key="{{this}}">
-                <van-tag plain type="danger" custom-class="tag">{{item.name}}</van-tag>
+                <van-tag plain type="danger" custom-class="tag">{{item.tagname}}</van-tag>
               </block>
             </view>
             <view slot="footer" class="van-card__footer">
@@ -35,7 +35,6 @@
 
 
   <van-submit-bar price="{{ totlePrice }}" button-text="确定" bind:submit="onCommitBtn" custom-class="van-submit-bar" safe-area-inset-bottom="{{ false }}" />
-
 
 </view>
 

@@ -1,9 +1,14 @@
+import Dialog from '../../dist/dialog/dialog';
+
+const app = getApp()
 Page({
   data: {
     scroll_height: 0,
     totlePrice: 0,
     objList: [],
     multiArray: [],
+    payintegral: 0,
+    payMoney:0,
     objectMultiArray: [{
       name: '东软A园',
       list: [{
@@ -62,19 +67,24 @@ Page({
     });
 
     const that = this;
-    wx.getStorage({
-      key: 'rltObj',
-      success: function(res) {
-        console.log(JSON.stringify(res));
-        const tem = res.data;
-        const temobj = JSON.parse(tem);
-        that.setData({
-          totlePrice: temobj.totlePrice,
-          objList: temobj.list
-        });
 
-      },
-    })
+    const temobj = app.globalData.orderInfo;
+    const totlePriceNum = temobj.totlePrice / 100.0;
+    let jifen = app.globalData.integral / 10;
+    let zhifu = 0;
+    if (totlePriceNum < jifen){
+      //剩余积分大于总价格
+      jifen = totlePriceNum;
+    }else{
+      zhifu = (totlePriceNum - jifen) * 100;
+    }
+
+    that.setData({
+      totlePrice: temobj.totlePrice,
+      objList: temobj.list,
+      payintegral: jifen * 10,
+      payMoney: zhifu
+    });
 
     const timeList = [{
         name: '上午08:00-08:30'
@@ -168,6 +178,80 @@ Page({
       })
       return;
     }
+    const that = this;
+    const url = `${app.globalData.urlPath}/api/client/orderadd`;
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: url,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        "token": app.globalData.token,
+        "totleprice": that.data.totlePrice / 100.0,
+        "integral": that.data.payintegral,
+        "actual": that.data.payMoney / 100.0,
+        "adress": that.data.selectVal,
+        "deliverytime": that.data.selectVal1,
+        "objs": app.globalData.orderInfo.list
+      },
+      success(res) {
+        wx.hideLoading();
+        if (res.statusCode == 200) {
+          console.log("正确" + JSON.stringify(res));
+          if (res.data.data.res == 1){
+            if (res.data.data.iserror == 0){
+              app.globalData.integral = res.data.data.integral;
+              const mess = "本次获得" + res.data.data.addIntegral+"积分";
+                  Dialog.alert({
+                    title: '提交成功',
+                    message: mess
+                  }).then(() => {
+                    wx.navigateBack({
+                      delta: 1
+                    });
+                  });
+              }else{
+                  const mess = "本次获得" + addIntegral + "积分";
+                  Dialog.alert({
+                    title: '提交成功',
+                    message: mess
+                  }).then(() => {
+                    wx.navigateBack({
+                      delta: 1
+                    });
+                  });
+              }
+          }else{
+            Dialog.alert({
+              title: '错误提示',
+              message: res.data.data.message
+            }).then(() => {
+            });
+          }
+        }
+        else {
+          Dialog.alert({
+            title: '提交失败',
+            message: '提交失败，请点击确定重新请求'
+          }).then(() => {
+          });
+        }
+
+      },
+      fail(e) {
+        wx.hideLoading();
+        Dialog.alert({
+          title: '提交失败',
+          message: '提交失败，请点击确定重新请求'
+        }).then(() => {
+          
+        });
+      }
+    });
   },
   bindMultiPickerColumnChange: function(e) {
     var data = {

@@ -17,7 +17,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isAuthShow: false,
     notiy: '欢迎光临',
-    loadShow: false
+    loadShow: false,
+    globurl: app.globalData.urlPath
   },
   onLoad: function() {
 
@@ -45,8 +46,9 @@ Page({
       }
     })
 
+    const url = `${app.globalData.urlPath}/api/client/objlist`;
     wx.request({
-      url: 'https://www.easy-mock.com/mock/5ca0798a3cd80d358df42f48/api/homechanpin',
+      url: url,
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -67,6 +69,20 @@ Page({
       }
     });
 
+  },
+  onReady() {
+    // Do something when page ready.
+  },
+  onShow() {
+    // Do something when page show.
+
+    if (app.globalData.integral){
+      const notiystr1 = `欢迎${app.globalData.userInfo.nickName}，当前您拥${app.globalData.integral}有积分`;
+      this.setData({
+        notiy: notiystr1
+      });
+    }
+    
   },
   onBadgeChange(event) {
     console.log(event.detail);
@@ -140,7 +156,7 @@ Page({
         Object.keys(objsN[key]).forEach(function(key1) {
 
           let temobj = {
-            "objID": that.data.classifyList[key].objs[key1].objID,
+            "objid": that.data.classifyList[key].objs[key1].objid,
             "num": objsN[key][key1],
             "price": that.data.classifyList[key].objs[key1].price,
             "title": that.data.classifyList[key].objs[key1].title
@@ -154,10 +170,8 @@ Page({
         "list": rltList,
         "totlePrice": this.data.totlePrice
       };
-      wx.setStorage({
-        key: 'rltObj',
-        data: JSON.stringify(rltObj)
-      })
+
+      app.globalData.orderInfo = rltObj;
 
 
       wx.navigateTo({
@@ -192,6 +206,7 @@ Page({
     });
 
     const that = this;
+    app.globalData.userInfo = userInfo;
 
     wx.login({
       success: function(res) {

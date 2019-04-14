@@ -26,14 +26,16 @@
 
         <view slot="footer" class="footer">
           <view style="display:flex;margin-top:10px;margin-bottom:15px;">
-            <text style='flex:1;font-size: 15px;'>积分抵扣：(100积分)</text>
-            <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>-¥10.00</text>
+            <text style='flex:1;font-size: 15px;'>积分抵扣：({{payintegral}}积分)</text>
+            <text style='flex:1;text-align: right;color:#F03131;font-size: 15px;'>-¥{{payintegral / 10}}</text>
           </view>
         </view>
 
       </van-panel>
     </demo-block>
   </scroll-view>
-  <van-submit-bar price="{{ 0 }}" button-text="提交订单" bind:submit="onCommitBtn" custom-class="van-submit-bar" safe-area-inset-bottom="{{ false }}" />
+  <van-submit-bar price="{{ payMoney }}" button-text="提交订单" bind:submit="onCommitBtn" custom-class="van-submit-bar" safe-area-inset-bottom="{{ false }}" />
 
 </view>
+
+<van-dialog id="van-dialog" />
