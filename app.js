@@ -8,6 +8,6 @@ App({
     urlPath:'http://127.0.0.1:7001',
     token:null,
     integral:null,
-    orderInfo:{}
+    orderInfo:null
   }
 })

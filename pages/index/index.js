@@ -76,10 +76,20 @@ Page({
   onShow() {
     // Do something when page show.
 
-    if (app.globalData.integral){
+    if (app.globalData.integral && !app.globalData.orderInfo){
       const notiystr1 = `欢迎${app.globalData.userInfo.nickName}，当前您拥${app.globalData.integral}有积分`;
+
+      let allData = this.data.classifyList;
+      let temList = [];
+      for (let i = 0; i < allData.length; i++) {
+        temList.push(null);
+      }
+
       this.setData({
-        notiy: notiystr1
+        badgeList: temList,
+        notiy: notiystr1,
+        objNum: {},
+        totlePrice:0
       });
     }
     
@@ -155,13 +165,16 @@ Page({
 
         Object.keys(objsN[key]).forEach(function(key1) {
 
-          let temobj = {
-            "objid": that.data.classifyList[key].objs[key1].objid,
-            "num": objsN[key][key1],
-            "price": that.data.classifyList[key].objs[key1].price,
-            "title": that.data.classifyList[key].objs[key1].title
-          };
-          rltList.push(temobj);
+          if (objsN[key][key1] > 0){
+            let temobj = {
+              "objid": that.data.classifyList[key].objs[key1].objid,
+              "num": objsN[key][key1],
+              "price": that.data.classifyList[key].objs[key1].price,
+              "title": that.data.classifyList[key].objs[key1].title
+            };
+            rltList.push(temobj);
+          }
+          
         });
 
       });

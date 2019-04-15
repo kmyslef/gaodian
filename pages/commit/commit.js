@@ -225,6 +225,9 @@ Page({
                     });
                   });
               }
+
+            app.globalData.orderInfo = null;
+
           }else{
             Dialog.alert({
               title: '错误提示',
