@@ -16,6 +16,8 @@ Page({
     badgeList: [],
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isAuthShow: false,
+    isCoverItemShow:false,
+    coverItem:{},
     notiy: '欢迎光临',
     loadShow: false,
     globurl: app.globalData.urlPath
@@ -25,7 +27,7 @@ Page({
     let windowHeight = wx.getSystemInfoSync().windowHeight;
     let windowWidth = wx.getSystemInfoSync().windowWidth;
     this.setData({
-      scroll_height: windowHeight - 50
+      scroll_height: windowHeight - 90
     });
 
     let that = this;
@@ -111,9 +113,19 @@ Page({
     console.log(event.detail);
   },
   cellChoose(options) {
-
+    console.log(options.currentTarget.dataset.item)
     var id = options.currentTarget.id;
     console.log("cellChoose" + id)
+    this.setData({
+      isCoverItemShow: true,
+      coverItem: options.currentTarget.dataset.item
+    });
+  },
+  onClose(e){
+    console.log(e)
+    this.setData({
+      isCoverItemShow: false
+    });
   },
   cellBtnChoose(options) {
     console.log(options);

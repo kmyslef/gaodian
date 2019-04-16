@@ -1,4 +1,7 @@
 /**index.wxss**/
+page {
+  overflow: hidden;
+}
 .userinfo {
   position: relative;
   width: 750/2 px;
@@ -28,3 +31,23 @@
   border-radius:40%;
 }
 
+.notice-top{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:9;
+}
+.ul-list{
+  display:flex;
+  flex-direction: row;
+  /* margin-top: 40px;
+  margin-bottom: 60px */
+}
+.pad10{
+  padding:5px 10px; 
+  font-size: 16px;
+}
+.van-popup{
+  top: 44% !important;
+}

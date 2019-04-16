@@ -21,3 +21,24 @@
   display: block;
   margin-bottom: 15px;
 }
+.overfloy-y-auto {
+  overflow-y: auto;
+}
+.overfloy-hid{
+  overflow: hidden;
+}
+.display-block {
+  display: block;
+}
+.red{
+  color: red;
+}
+.float-left{
+  float: left;
+}
+.float-right{
+  float: right;
+}
+.pad-right10{
+  padding-right: 10px
+}
