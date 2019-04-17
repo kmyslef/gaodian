@@ -5,7 +5,8 @@ App({
   },
   globalData:{
     userInfo:null,
-    urlPath:'http://127.0.0.1:7001',
+    // urlPath:'http://127.0.0.1:7001',
+    urlPath:'https://www.jmwho.cn/gaodian',
     token:null,
     integral:null,
     orderInfo:null
