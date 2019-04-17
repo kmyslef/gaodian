@@ -1,3 +1,5 @@
 {
-  "usingComponents": {"van-dialog": "../../dist/dialog/index"}
+  "usingComponents": {"van-dialog": "../../dist/dialog/index"},
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 100
 }

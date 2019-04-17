@@ -96,6 +96,60 @@ Page({
     }
     
   },
+  onPullDownRefresh: function () {
+    // 用户触发了下拉刷新操作
+    // 拉取新数据重新渲染界面
+    // wx.stopPullDownRefresh() // 可以停止当前页面的下拉刷新。
+    let windowHeight = wx.getSystemInfoSync().windowHeight;
+    let windowWidth = wx.getSystemInfoSync().windowWidth;
+    this.setData({
+      scroll_height: windowHeight - 90
+    });
+
+    let that = this;
+
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function (res) {
+              that.afterUserInfo(res.userInfo);
+            }
+          })
+        } else {
+          that.setData({
+            isAuthShow: true
+          });
+        }
+      }
+    })
+
+    const url = `${app.globalData.urlPath}/api/client/objlist`;
+    wx.request({
+      url: url,
+      method: 'GET',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        let allData = res.data.data;
+        let temList = [];
+        for (let i = 0; i < allData.length; i++) {
+          temList.push(null);
+        }
+        console.log(allData);
+        that.setData({
+          classifyList: allData,
+          objs: allData[0].objs,
+          badgeList: temList
+        });
+      }
+    });
+  },
+  onReachBottom: function () {
+    // 当界面的下方距离页面底部距离小于100像素时触发回调
+    
+  },
   onBadgeChange(event) {
     console.log(event.detail);
     this.setData({
@@ -110,7 +164,7 @@ Page({
     console.log(event.detail);
   },
   scroll(event) {
-    console.log(event.detail);
+    // console.log(event.detail);
   },
   cellChoose(options) {
     console.log(options.currentTarget.dataset.item)
