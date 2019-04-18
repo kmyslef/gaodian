@@ -1,18 +1,21 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container {{!errShow?'show':'hide'}}">
   <!-- <van-notice-bar mode="link" text="欢迎笨笨：当前积分为56 " left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png" /> -->
   <van-notice-bar text="{{notiy}}" left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png" />
   <view class='ul-list'>
-    <view class='overfloy-y-auto'>
-      <van-badge-group bind:change="onBadgeChange" custom-class="group" style="height:{{scroll_height}}px;" class="display-block">
+    <view style="flex:1;" class="{{!isCoverItemShow?'overfloy-y-auto':'overfloy-hid'}}">
+      <!-- <van-badge-group bind:change="onBadgeChange" custom-class="group" style="height:{{scroll_height}}px;" class="display-block">
         <block wx:for="{{classifyList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.classifyid}}">
-          <!-- <van-badge title="{{item.classifyName}}" wx:if="{{badgeList[tindex] > 0}}" info="{{badgeList[tindex]}}"/>
-          <van-badge title="{{item.classifyName}}" wx:else/> -->
           <van-badge title="{{item.classifyname}}" info="{{badgeList[tindex]}}" />
         </block>
-      </van-badge-group>
+      </van-badge-group> -->
+      <scroll-view scroll-y style="height:{{scroll_height}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+         <block wx:for="{{classifyList}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.classifyid}}">
+          <van-badge custom-class=" {{tindex==currentClass?'tab_item_active':''}}" title="{{item.classifyname}}" data-index="{{tindex}}"  info="{{badgeList[tindex]}}"  catchtap="onBadgeChange"/>
+        </block>
+      </scroll-view>
     </view>
-    <view style="flex:1;" class='overfloy-y-auto'>
+    <view style="flex:3;" class="{{!isCoverItemShow?'overfloy-y-auto':'overfloy-hid'}}">
       <scroll-view scroll-y style="height:{{scroll_height}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
         <block wx:for="{{objs}}" wx:for-index="tindex" data-index="{{tindex}}" wx:key="{{item.objID}}">
           <van-card id="{{item.objid}}" data-item="{{item}}" price="{{item.price}}" desc="{{item.des}}" title="{{item.title}}" thumb="{{globurl}}/{{item.url}}" catchtap="cellChoose" >
@@ -31,11 +34,15 @@
     </view>
 
   </view>
-
+  
 
   <van-submit-bar price="{{ totlePrice }}" button-text="确定" bind:submit="onCommitBtn" custom-class="van-submit-bar" safe-area-inset-bottom="{{ false }}" />
 
 </view>
+
+<view class="{{errShow?'show':'hide'}}">
+    <button class="errBtn" loading="{{loginLoading}}" catchtap="moreClick">网络连接失败，请重试！</button>
+  </view>
 
 <van-popup show="{{ isCoverItemShow }}" bind:close="onClose">
     

@@ -1,6 +1,6 @@
 /**index.wxss**/
 page {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .userinfo {
   position: relative;
@@ -51,3 +51,33 @@ page {
 .van-popup{
   top: 44% !important;
 }
+.van-card__img{
+  width: 90px !important;
+  height: 75px !important;
+}
+.van-card__desc{
+  height: 20px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  margin-bottom: 5px;
+}
+
+.tab_item_active{
+  background-color:#fff !important;
+  font-weight:700;
+  color:#333 !important;
+  border-left: 3px solid #f44 !important;
+}
+
+.errBtn{
+  width:80%;
+  background:rgb(230, 230, 230);
+  padding: 25px 10px;
+  color:#999;
+  margin-top:45%;
+}
+
+/* .van-badge{
+  height: 600px;
+} */

@@ -20,6 +20,8 @@ Page({
     coverItem:{},
     notiy: '欢迎光临',
     loadShow: false,
+    errShow: false,  // 网络错误页面
+    loginLoading: false, //网络错误页面按钮加载loading
     globurl: app.globalData.urlPath
   },
   onLoad: function() {
@@ -64,9 +66,16 @@ Page({
         }
         console.log(allData);
         that.setData({
+          loginLoading: false,
+          errShow: false,
           classifyList: allData,
           objs: allData[0].objs,
           badgeList: temList
+        });
+      },fail(result){
+        console.log(result)
+        that.setData({
+          errShow:true
         });
       }
     });
@@ -96,18 +105,19 @@ Page({
     }
     
   },
-  onPullDownRefresh: function () {
-    // 用户触发了下拉刷新操作
-    // 拉取新数据重新渲染界面
-    // wx.stopPullDownRefresh() // 可以停止当前页面的下拉刷新。
+  moreClick() {
+    // 点击重试，重新渲染界面
     let windowHeight = wx.getSystemInfoSync().windowHeight;
     let windowWidth = wx.getSystemInfoSync().windowWidth;
     this.setData({
       scroll_height: windowHeight - 90
     });
-
+    
     let that = this;
 
+    that.setData({
+      loginLoading: true // 重新点击显示loading
+    });
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
@@ -139,9 +149,16 @@ Page({
         }
         console.log(allData);
         that.setData({
+          loginLoading: false,
           classifyList: allData,
           objs: allData[0].objs,
           badgeList: temList
+        });
+        // wx.stopPullDownRefresh(); // 可以停止当前页面的下拉刷新。
+      }, fail(result){
+        console.log(result)
+        that.setData({
+          loginLoading: false
         });
       }
     });
@@ -151,10 +168,12 @@ Page({
     
   },
   onBadgeChange(event) {
-    console.log(event.detail);
+    wx.stopPullDownRefresh();
+    console.log(event.currentTarget.dataset.index);
+    console.log(this.data.classifyList[event.currentTarget.dataset.index].objs);
     this.setData({
-      currentClass: event.detail,
-      objs: this.data.classifyList[event.detail].objs
+      currentClass: event.currentTarget.dataset.index,
+      objs: this.data.classifyList[event.currentTarget.dataset.index].objs
     });
   },
   upper(event) {
@@ -167,6 +186,9 @@ Page({
     // console.log(event.detail);
   },
   cellChoose(options) {
+    wx.stopPullDownRefresh(function(e){
+      console.log(e)
+    });
     console.log(options.currentTarget.dataset.item)
     var id = options.currentTarget.id;
     console.log("cellChoose" + id)
